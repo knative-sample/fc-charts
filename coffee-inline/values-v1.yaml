@@ -1,0 +1,5 @@
+env:
+  - name: VERSION
+    value: "inline-v1"
+revisionName: coffee-inline-v1
+

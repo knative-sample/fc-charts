@@ -1,0 +1,13 @@
+env:
+  - name: VERSION
+    value: "inline-v2"
+revisionName: coffee-inline-v2
+
+traffic:
+- tag: v2
+  revisionName: coffee-inline-v2
+  percent: 30
+
+- tag: v1
+  revisionName: coffee-inline-v1
+  percent: 70

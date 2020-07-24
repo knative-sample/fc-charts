@@ -1,0 +1,9 @@
+env:
+  - name: VERSION
+    value: "oss-v1"
+revisionName: coffee-oss-v1
+
+oss:
+  bucketName: "fc-zip"
+  objectName: "knative-demo/node-demo.zip"
+

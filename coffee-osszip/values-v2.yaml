@@ -1,0 +1,17 @@
+env:
+  - name: VERSION
+    value: "oss-v2"
+revisionName: coffee-oss-v2
+
+oss:
+  bucketName: "fc-zip"
+  objectName: "knative-demo/node-demo.zip"
+
+traffic:
+- tag: v2
+  revisionName: coffee-inline-v2
+  percent: 30
+
+- tag: v1
+  revisionName: coffee-inline-v1
+  percent: 70

@@ -1,0 +1,29 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: coffee-oss
+  annotations:
+    workload.serving.knative.aliyun.com/class: "fc"
+spec:
+  template:
+    metadata:
+      annotations:
+        fc.revision.serving.knative.aliyun.com/code-space: "oss"
+      {{- with .Values.revisionName}}
+      name: {{.}}
+      {{- end }}
+    spec:
+      containers:
+      - image: nodejs8
+        {{- with .Values.env}}
+        env:
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+        command: 
+        - {{ .Values.oss.bucketName }}
+        - {{ .Values.oss.objectName }}
+
+  {{- with .Values.traffic}}
+  traffic: 
+    {{- toYaml . | nindent 2 }}
+  {{- end }}

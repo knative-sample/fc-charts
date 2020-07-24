@@ -1,0 +1,28 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: coffee
+  annotations:
+    workload.serving.knative.aliyun.com/class: "fc"
+spec:
+  template:
+    metadata:
+      annotations:
+        fc.revision.serving.knative.aliyun.com/code-space: "inline"
+      {{- with .Values.revisionName}}
+      name: {{.}}
+      {{- end }}
+    spec:
+      containers:
+      - image: nodejs8
+        {{- with .Values.env}}
+        env:
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+        command: 
+        - | {{ .Files.Get "files/index.js" | nindent 10}}
+
+  {{- with .Values.traffic}}
+  traffic: 
+    {{- toYaml . | nindent 2 }}
+  {{- end }}

@@ -1,0 +1,7 @@
+env:
+  - name: VERSION
+    value: "oss-v0.1"
+
+oss:
+  bucketName: "fc-zip"
+  objectName: "knative-demo/node-demo.zip"
